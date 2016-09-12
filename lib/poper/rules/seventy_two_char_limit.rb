@@ -1,5 +1,5 @@
 module Poper
-  module Rule
+  module Rules
     class SeventyTwoCharLimit < Rule
       MSG = 'Every line of git commit message should be 72 chars or less'
 

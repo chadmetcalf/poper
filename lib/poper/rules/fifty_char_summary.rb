@@ -1,5 +1,5 @@
 module Poper
-  module Rule
+  module Rules
     class FiftyCharSummary < Rule
       MSG = 'Git commit message summary (first line) should be 50 chars or less'
 

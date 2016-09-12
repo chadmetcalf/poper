@@ -1,9 +1,6 @@
 require 'rugged'
 require 'poper/runner'
-require 'poper/rule/rule'
-require 'poper/rule/capitalization'
-require 'poper/rule/single_word'
-require 'poper/rule/fifty_char_summary'
-require 'poper/rule/seventy_two_char_limit'
-require 'poper/rule/rally_story_number'
-require 'poper/rule/generic'
+require 'poper/rule'
+Dir[File.expand_path('lib/poper/rules/*.rb')].each do |file|
+    require file
+end

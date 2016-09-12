@@ -1,7 +1,7 @@
 module Poper
-  module Rule
+  module Rules
     class RallyStoryNumber < Rule
-      MSG = "Git Summary doesn't start with the Rally Story Number"
+      MSG = "Git summary should start with the Story or Defect Identification"
 
       def check(message)
         MSG unless message.lines.first.match /^[A-Z]{2}\d{6}/

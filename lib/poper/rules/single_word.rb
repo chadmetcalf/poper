@@ -1,6 +1,6 @@
 module Poper
-  module Rule
-    class SingleWord < Rule
+  module Rules
+    class SingleWord < Poper::Rule
       MSG = 'Git commit message should consist of more than a single word'
 
       def check(message)

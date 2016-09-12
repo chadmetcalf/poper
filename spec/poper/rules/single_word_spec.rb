@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Poper
-  module Rule
+  module Rules
     describe SingleWord do
       describe '#check' do
         let(:rule) { SingleWord.new }

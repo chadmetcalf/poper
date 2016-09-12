@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Poper
-  module Rule
+  module Rules
     describe Generic do
       describe '#check' do
         let(:rule) { Generic.new }

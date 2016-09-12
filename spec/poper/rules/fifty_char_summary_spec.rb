@@ -1,11 +1,10 @@
 require 'spec_helper'
 
 module Poper
-  module Rule
+  module Rules
     describe FiftyCharSummary do
       describe '#check' do
-        let(:rule) { FiftyCharSummary.new }
-        subject { rule.check(msg) }
+        let(:subject) { FiftyCharSummary.new }
 
         context 'fifty char summary' do
           let(:msg) { 'Implement that feature - really really really well' }
