@@ -4,43 +4,56 @@ module Poper
   module Rules
     describe Generic do
       describe '#check' do
-        let(:rule) { Generic.new }
-        subject { rule.check(message) }
+        let(:rule) { described_class.new }
 
-        context 'non-banned commit message' do
-          let(:message) { 'Implement that feature' }
-          it { should be_nil }
+        it 'non-banned commit message' do
+          message = 'Implement that feature'
+          result = rule.check(message)
+
+          expect(result).to be_nil
         end
 
         context 'banned commit messages' do
-          context ' fix' do
-            let(:message) { ' fix' }
-            it { should_not be_nil }
+          it ' fix' do
+            message = ' fix'
+            result = rule.check(message)
+
+            expect(result).not_to be_nil
           end
 
-          context 'Oops ' do
-            let(:message) { ' Oops' }
-            it { should_not be_nil }
+          it 'Oops ' do
+            message = ' Oops'
+            result = rule.check(message)
+
+            expect(result).not_to be_nil
           end
 
-          context ' ChaNges ' do
-            let(:message) { ' ChaNges' }
-            it { should_not be_nil }
+          it ' ChaNges ' do
+            message = ' ChaNges'
+            result = rule.check(message)
+
+            expect(result).not_to be_nil
           end
 
-          context 'fix tests' do
-            let(:message) { 'fix tests' }
-            it { should_not be_nil }
+          it 'fix tests' do
+            message = 'fix tests'
+            result = rule.check(message)
+
+            expect(result).not_to be_nil
           end
 
-          context 'oops fixes' do
-            let(:message) { "oops\n\nfixes" }
-            it { should_not be_nil }
+          it 'oops fixes' do
+            message = "oops\n\nfixes"
+            result = rule.check(message)
+
+            expect(result).not_to be_nil
           end
 
-          context 'oops, fix tests' do
-            let(:message) { 'oops, fix tests' }
-            it { should_not be_nil }
+          it 'oops, fix tests' do
+            message = 'oops, fix tests'
+            result = rule.check(message)
+
+            expect(result).not_to be_nil
           end
         end
       end

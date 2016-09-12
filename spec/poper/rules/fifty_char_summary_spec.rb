@@ -4,16 +4,20 @@ module Poper
   module Rules
     describe FiftyCharSummary do
       describe '#check' do
-        let(:subject) { FiftyCharSummary.new }
+        let(:rule) { described_class.new }
 
-        context 'fifty char summary' do
-          let(:msg) { 'Implement that feature - really really really well' }
-          it { should be_nil }
+        it '50 character summary passes' do
+          message = CommitMessage.new('Implement that feature - really really really well')
+          result = rule.check(message)
+
+          expect(result).to be_nil
         end
 
-        context 'fifty-one char summary' do
-          let(:msg) { 'Implement that feature - really really really well.' }
-          it { should_not be_nil }
+        it '51 character summary does not pass' do
+          message = CommitMessage.new('Implement that feature - really really really well.')
+          result = rule.check(message)
+
+          expect(result).not_to be_nil
         end
       end
     end

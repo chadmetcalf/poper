@@ -1,7 +1,8 @@
 module Poper
   module Rules
-    class RallyStoryNumber < Rule
+    class RallyNumber < Rule
       MSG = "Git summary should start with the Story or Defect Identification"
+      KEY = :rally_number
 
       def check(message)
         MSG unless message.lines.first.match /^[A-Z]{2}\d{6}/

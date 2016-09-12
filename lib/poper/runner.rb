@@ -9,20 +9,27 @@ module Poper
     end
 
     def run
-      commits.flat_map { |c| check(c) }.compact
+      commit_messages.flat_map { |commit_message| check(commit_message) }.compact
     end
 
     private
 
-    def check(commit)
-      rules.map do |rule|
-        result = rule.check(commit.message)
-        OpenStruct.new(commit: commit.oid, message: result) if result
+    def check(commit_message)
+      return nil if commit_message.valid?
+
+      commit_message.violations.map do |violation_message|
+        OpenStruct.new(commit: commit_message.commit_oid, message: violation_message)
       end
     end
 
     def rules
-      Rule::Rule.all.map(&:new)
+      @rules ||= Rule.bank.map(&:new)
+    end
+
+    def commit_messages
+      @commit_messages ||= commits.map do |commit|
+        CommitMessageValidator.new(commit: commit, rules: rules)
+      end
     end
 
     def commits

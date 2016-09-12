@@ -4,22 +4,27 @@ module Poper
   module Rules
     describe SingleWord do
       describe '#check' do
-        let(:rule) { SingleWord.new }
-        subject { rule.check(message) }
+        let(:rule) { described_class.new }
 
-        context 'zero word message' do
-          let(:message) { ' ' }
-          it { should_not be_nil }
+        it 'multiple word message' do
+          message = 'Implement that feature'
+          result = rule.check(message)
+
+          expect(result).to be_nil
         end
 
-        context 'single word message' do
-          let(:message) { 'Fix' }
-          it { should_not be_nil }
+        it 'zero word message' do
+          message = CommitMessage.new(' ')
+          result = rule.check(message)
+
+          expect(result).not_to be_nil
         end
 
-        context 'multiple word message' do
-          let(:message) { 'Implement that feature' }
-          it { should be_nil }
+        it 'single word message' do
+          message = 'Fix'
+          result = rule.check(message)
+
+          expect(result).not_to be_nil
         end
       end
     end

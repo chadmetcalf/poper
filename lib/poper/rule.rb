@@ -1,13 +1,11 @@
 module Poper
   class Rule
-    @all = []
-
-    def self.all
-      @all.clone
+    def self.bank
+      @bank ||= []
     end
 
-    def self.inherited(subclass)
-      @all << subclass
+    def self.inherited(klass)
+      bank << klass
     end
   end
 end

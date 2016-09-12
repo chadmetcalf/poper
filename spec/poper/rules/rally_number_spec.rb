@@ -2,9 +2,9 @@ require 'spec_helper'
 
 module Poper
   module Rules
-    describe RallyStoryNumber do
+    describe RallyNumber do
       describe '#check' do
-        let(:subject) { RallyStoryNumber.new }
+        let(:subject) { described_class.new }
 
         context 'has a valid' do
           it 'story number' do

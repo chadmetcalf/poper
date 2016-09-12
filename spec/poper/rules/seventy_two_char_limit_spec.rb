@@ -4,27 +4,24 @@ module Poper
   module Rules
     describe SeventyTwoCharLimit do
       describe '#check' do
-        let(:rule) { SeventyTwoCharLimit.new }
-        subject { rule.check(message) }
+        let(:rule) { described_class.new }
 
-        context 'seventy-one char line' do
-          let(:message) do
-            'Implement that feature - really really really well
+        it 'seventy-one char line' do
+          message = CommitMessage.new('Implement that feature - really really really well
 
-Write your commit message in the imperative: "Fix bug", not "Fixed bug"'
-          end
+Write your commit message in the imperative: "Fix bug", not "Fixed bug"')
+          result = rule.check(message)
 
-          it { should be_nil }
+          expect(result).to be_nil
         end
 
-        context 'seventy-three char line' do
-          let(:message) do
-            'Implement that feature - really really really well
+        it 'seventy-three char line' do
+          message = CommitMessage.new('Implement that feature - really really really well
 
-Write your commit message in the imperative: "Fix bugs", not "Fixed bugs"'
-          end
+Write your commit message in the imperative: "Fix bugs", not "Fixed bugs"')
+          result = rule.check(message)
 
-          it { should_not be_nil }
+          expect(result).not_to be_nil
         end
       end
     end
